@@ -17,7 +17,7 @@ const userController = {
     //get user by ID 
     getUserById({ params }, res) {
         User.findOne({ _id: params.id})
-        .populate({path: 'thoughts', select: '-__v'})
+        .populate({path: 'thought', select: '-__v'})
         .populate({path: 'friends', select: '-__v'})
         .select('-__v')
         .then(dbUserData => {
@@ -35,9 +35,13 @@ const userController = {
 
     //create User 
     createUser({ body }, res) {
+        console.log(body);
         User.create(body)
             .then(dbUserData => res.json(dbUserData))
-            .catch(err => res.status(400).json(err));
+            .catch(err => 
+                {
+                    console.log(err)
+                    res.status(400).json(err)});
     },
 
     //update user by ID
@@ -66,7 +70,7 @@ const userController = {
             .catch(err => res.status(400).json(err));
     },
 
-
+    
 }
 
 module.exports = userController;
