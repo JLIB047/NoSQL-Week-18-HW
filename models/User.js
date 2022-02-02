@@ -15,7 +15,7 @@ const userSchema = new Schema (
         //regex
         match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/]
     },
-    thoughts: [{
+    thought: [{
         type: Schema.Types.ObjectId,
         ref: 'Thought'
     }],
@@ -40,6 +40,6 @@ userSchema.virtual('friendCount').get(function() {
 })
 
 //create total count of friends 
-const user = model('user', userSchema);
+const User = model('User', userSchema);
 
-module.exports = user;
+module.exports = User;
